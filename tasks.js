@@ -276,23 +276,33 @@
 
 /* ------------------------------------ */
 
-const isShuffled = (a, b) => {
-  return (
-    String(a).split("").sort().join("") === String(b).split("").sort().join("")
-  );
-};
+// const isShuffled = (a, b) => {
+//   return (
+//     String(a).split("").sort().join("") === String(b).split("").sort().join("")
+//   );
+// };
 
-function nextSmaller(n) {
-  let res = n - 1;
+// function nextSmaller(n) {
+//   let res = n - 1;
 
-  if (n === +String(n).split("").sort().join("")) return -1;
+//   if (n === +String(n).split("").sort().join("")) return -1;
 
-  while (!isShuffled(res, n)) {
-    if (String(res).length < String(n).length) return -1;
-    --res;
-  }
+//   while (!isShuffled(res, n)) {
+//     if (String(res).length < String(n).length) return -1;
+//     --res;
+//   }
 
-  return res || -1;
-}
+//   return res || -1;
+// }
 
-console.log(nextSmaller(9199999));
+// console.log(nextSmaller(9199999));
+
+/* ------------------------------------ */
+
+// const squirrel = (h, H, S) => {
+//   return +((1 + (S / h) ** 2) ** 0.5 * H).toFixed(4);
+// };
+
+// console.log(squirrel(8, 9, 37));
+
+/* ------------------------------------ */
