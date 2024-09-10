@@ -306,3 +306,218 @@
 // console.log(squirrel(8, 9, 37));
 
 /* ------------------------------------ */
+
+// const getOperands = (expression) => {
+//   let a = expression.slice(
+//     0,
+//     expression.lastIndexOf("+") > 0
+//       ? expression.lastIndexOf("+")
+//       : expression.lastIndexOf("-")
+//   );
+//   let b = expression.slice(expression.indexOf(a) + a.length);
+//   let koef = a.slice(a.length - 1);
+//   a =
+//     a.slice(0, -1) === ""
+//       ? "+1"
+//       : a.slice(0, -1) === "-"
+//       ? "-1"
+//       : a.slice(0, -1);
+
+//   return { a, b, koef };
+// };
+
+// const factorial = (n) => {
+//   let res = 1;
+
+//   for (let i = 1; i <= n; i++) {
+//     res *= i;
+//   }
+
+//   return res;
+// };
+
+// const binominalKoef = (n, i) => {
+//   return factorial(n) / (factorial(i) * factorial(n - i));
+// };
+
+// function expand(expr) {
+//   const [sum, n] = expr.split("^");
+//   const expression = sum.slice(1, -1);
+//   let res = "";
+
+//   const { a, b, koef } = getOperands(expression);
+
+//   for (let i = 0; i <= n; i++) {
+//     let k = String(Math.pow(+a, n - i) * Math.pow(+b, i) * binominalKoef(n, i));
+//     const x = n - i === 1 ? koef : n - i === 0 ? "" : `${koef}^${n - i}`;
+//     k = k === "1" && x !== "" ? "" : k;
+
+//     if (k === "0") continue;
+
+//     const operand = k === "-1" && i !== +n ? "-" + x : k + x;
+
+//     if (!operand.startsWith("-") && i) {
+//       res += "+" + operand;
+//     } else {
+//       res += operand;
+//     }
+//   }
+
+//   return res;
+// }
+
+// console.log(expand("(x+1)^2"));
+
+/* --------------------------- */
+
+// function topThreeWords(text) {
+//   const obj = {};
+
+//   const wordList = text
+//     .replace(/[\.,\n]/g, "")
+//     .split(" ")
+//     .filter((word) => word !== " " && word !== "");
+
+//   wordList.forEach((word) => {
+//     if (word.toLowerCase() in obj) {
+//       obj[word.toLowerCase()] += 1;
+//     } else {
+//       obj[word.toLowerCase()] = 1;
+//     }
+//   });
+
+//   return Object.entries(obj)
+//     .sort((a, b) => b[1] - a[1])
+//     .map((entry) => entry[0])
+//     .slice(0, 3);
+// }
+
+// console.log(
+//   topThreeWords(`e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e`)
+// );
+
+/* ---------------------------- */
+
+// const compareNumsLength = (a, b) => {
+//   if (a.length >= b.length) return [a, b];
+//   return [b, a];
+// };
+
+// const removeFirstZeros = (num) => {
+//   return num.replace(/^0*/g, "")
+// }
+
+// function add(a, b) {
+//   const [longer, shorter] = compareNumsLength(a, b);
+//   let extra = 0;
+//   let res = [];
+
+//   for (
+//     let i = longer.length - 1, j = shorter.length - 1;
+//     i >= 0;
+//     i -= 1, j -= 1
+//   ) {
+//     const a = Number(longer[i]);
+//     const b = Number(shorter[j]) || 0;
+
+//     const sum = a + b + extra;
+
+//     if (sum >= 10 && i) {
+//       res.unshift(sum.toString()[1]);
+//       extra = 1;
+//     } else {
+//       res.unshift(sum);
+//       extra = 0;
+//     }
+//   }
+
+//   return removeFirstZeroz(res.join(""));
+// }
+
+/* ----------------------- */
+
+// const filterArr = (arr) => {
+//   const res = [];
+
+//   arr.forEach((element) => {
+//     if (typeof element === "object" && element !== null) {
+//       res.push(compactObject(element));
+//     } else {
+//       element && res.push(element);
+//     }
+//   });
+
+//   return res;
+// };
+
+// function compactObject(obj) {
+//   if (Array.isArray(obj)) {
+//     return filterArr(obj);
+//   }
+
+//   let res = {};
+
+//   for (const key in obj) {
+//     if (Object.prototype.hasOwnProperty.call(obj, key)) {
+//       const element = obj[key];
+
+//       if (!element) continue;
+
+//       if (Array.isArray(element)) {
+//         res[key] = filterArr(element);
+//       } else {
+//         if (typeof element === "object") {
+//           res[key] = compactObject(element);
+//         } else {
+//           res[key] = element;
+//         }
+//       }
+//     }
+//   }
+
+//   return res;
+// }
+
+// console.log(compactObject([{ e: null, b: 1 }]));
+
+/* --------------------- */
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number}
+//  */
+
+// const multiply = (nums) => {
+//   if (!nums.length) return 0;
+//   return nums.reduce((res, val) => res * val);
+// };
+
+// const maxStrength = function (nums) {
+//   if (nums.length === 1 && nums[0] < 0) {
+//     return nums[0];
+//   }
+
+//   nums = nums.filter((num) => num !== 0);
+//   let maxNegative = { value: null, index: null };
+
+//   const negativeCount = nums.reduce((count, value, index) => {
+//     if (
+//       value < 0 &&
+//       (value > maxNegative.value || maxNegative.value === null)
+//     ) {
+//       maxNegative.value = value;
+//       maxNegative.index = index;
+//     }
+
+//     return value < 0 ? count + 1 : count;
+//   }, 0);
+
+//   if (negativeCount % 2 === 0) {
+//     return multiply(nums);
+//   }
+
+//   nums = nums.filter((_, index) => index !== maxNegative.index);
+//   return multiply(nums);
+// };
+
+// console.log(maxStrength([-9, 0]));
